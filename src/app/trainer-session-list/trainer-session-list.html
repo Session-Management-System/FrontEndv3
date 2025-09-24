@@ -1,0 +1,86 @@
+<!-- Pending Sessions Tab -->
+<div class="tab-content" [class.active]="activeTab === 'pending'">
+  <div class="session-card" *ngFor="let session of pendingSessions">
+    <div class="session-header">
+      <div>
+        <h3 class="session-title">{{session.title}}</h3>
+        <p class="session-category">{{session.description | slice:0:100}}{{session.description.length > 100 ? '...' : ''}}</p>
+      </div>
+      <span class="session-status status-pending">Pending</span>
+    </div>
+    <div class="session-details">
+      <div class="session-detail">
+        <i class="fas fa-calendar"></i>
+        {{formatDate(session.startTime)}}
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-clock"></i>
+        {{calculateDuration(session.startTime, session.endTime)}}
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-users"></i>
+        Max {{session.capacity}} students
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-video"></i>
+        Google Meet
+      </div>
+    </div>
+    <button class="delete-btn" (click)="deleteSession(session.sessionId)">
+      <i class="fas fa-trash"></i>
+      Delete Session
+    </button>
+  </div>
+
+  <div *ngIf="pendingSessions.length === 0" class="empty-state">
+    <div class="empty-icon">
+      <i class="fas fa-inbox"></i>
+    </div>
+    <h3>No Pending Sessions</h3>
+    <p>You don't have any pending session requests</p>
+  </div>
+</div>
+
+<!-- Approved Sessions Tab -->
+<div class="tab-content" [class.active]="activeTab === 'approved'">
+  <div class="session-card" *ngFor="let session of approvedSessions">
+    <div class="session-header">
+      <div>
+        <h3 class="session-title">{{session.title}}</h3>
+        <p class="session-category">{{session.description | slice:0:100}}{{session.description.length > 100 ? '...' : ''}}</p>
+      </div>
+      <span class="session-status status-approved">Approved</span>
+    </div>
+    <div class="session-details">
+      <div class="session-detail">
+        <i class="fas fa-calendar"></i>
+        {{formatDate(session.startTime)}}
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-clock"></i>
+        {{calculateDuration(session.startTime, session.endTime)}}
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-users"></i>
+        {{session.remainingCapacity}}/{{session.capacity}} registered
+      </div>
+      <div class="session-detail">
+        <i class="fas fa-video"></i>
+        Google Meet
+      </div>
+    </div>
+    <button class="join-btn" (click)="joinMeeting(session.sessionLink)" *ngIf="session.sessionLink">
+      <i class="fas fa-video"></i>
+      Join Meeting
+    </button>
+  </div>
+
+  <div *ngIf="approvedSessions.length === 0" class="empty-state">
+    <div class="empty-icon">
+      <i class="fas fa-inbox"></i>
+    </div>
+    <h3>No Approved Sessions</h3>
+    <p>You don't have any approved sessions yet</p>
+  </div>
+</div>
+

@@ -1,0 +1,200 @@
+<!-- Header -->
+<header class="header">
+  <div class="nav-container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      LearnHub
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#home">Services</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="auth-buttons">
+      <button class="btn btn-outline" (click)="openLoginModal()">Sign In</button>
+      <button class="btn btn-primary" (click)="openStudentRegistration()">Join Now</button>
+      <!-- <button class="btn btn-outline">Sign In</button>
+      <button class="btn btn-primary">Join Now</button> -->
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Professional Learning Sessions Made Simple</h1>
+      <p>
+        Connect with expert trainers and enhance your skills through live, interactive sessions. Our
+        platform makes learning accessible, organized, and effective for everyone.
+      </p>
+      <div class="hero-buttons">
+        <!-- <button class="btn btn-primary btn-large">Start Learning</button> -->
+        <button class="btn btn-primary btn-large" (click)="openStudentRegistration()">
+          Start Learning
+        </button>
+        <button class="btn btn-outline btn-large" (click)="openTrainerRegistration()">
+          <!-- <button class="btn btn-outline btn-large">Become a Trainer</button> -->
+          Become a Trainer
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>Comprehensive learning solutions designed for students and trainers</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>For Students</h3>
+        </div>
+        <p>
+          Access live learning sessions across multiple categories and enhance your professional
+          skills
+        </p>
+        <ul class="service-features">
+          <li>Browse and book live sessions</li>
+          <li>Multiple learning categories available</li>
+          <li>Smart booking calendar system</li>
+          <li>Automatic conflict prevention</li>
+          <li>Flexible cancellation policy</li>
+          <li>Direct meeting links</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>For Trainers</h3>
+        </div>
+        <p>Share your expertise and create engaging live sessions for motivated learners</p>
+        <ul class="service-features">
+          <li>Create and manage live sessions</li>
+          <li>Flexible scheduling options</li>
+          <li>Control session capacity</li>
+          <li>Upload qualification certificates</li>
+          <li>Professional trainer verification</li>
+          <li>Session management tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Platform Features</h2>
+      <p>Everything you need for a seamless learning experience</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Smart Scheduling</h3>
+        </div>
+        <p>
+          Intelligent calendar system preventing booking conflicts and optimizing your learning
+          schedule
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3>Live Sessions</h3>
+        </div>
+        <p>
+          Real-time interactive sessions with integrated meeting links for seamless connectivity
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Capacity Management</h3>
+        </div>
+        <p>Controlled session sizes ensuring personalized attention and quality interaction</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Flexible Cancellation</h3>
+        </div>
+        <p>Easy cancellation policy with 2-hour advance notice providing maximum flexibility</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>LearnHub</h3>
+        <p>Professional session management platform connecting learners with expert trainers.</p>
+        <p>Empowering growth through structured learning.</p>
+      </div>
+      <div class="footer-section">
+        <h3>FAQs</h3>
+        <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+          <div class="faq-question" (click)="toggleFaq(i)">
+            <strong>{{ faq.question }}</strong>
+          </div>
+          <div class="faq-answer" [ngClass]="{ active: faq.open }">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use the new registration component -->
+    <app-registration
+      [isOpen]="isRegistrationModalOpen"
+      [roleId]="registrationRoleId"
+      (closed)="closeRegistrationModal()"
+      (registrationSuccess)="onRegistrationSuccess()"
+    >
+    </app-registration>
+    <app-forgot-password [isOpen]="isForgotPasswordModalOpen" (close)="closeForgotPasswordModal()">
+    </app-forgot-password>
+
+    <app-login
+      [hidden]="!isLoginModalOpen"
+      (close)="isLoginModalOpen = false"
+      (openRegister)="openStudentRegistration()"
+      (openForgotPassword)="openForgotPasswordModal()"
+    >
+    </app-login>
+  </div>
+</footer>

@@ -1,0 +1,329 @@
+<div
+  id="registrationModal"
+  class="modal"
+  [class.modal-open]="isOpen"
+  role="dialog"
+  aria-labelledby="modal-title"
+  aria-modal="true"
+>
+  <div class="modal-backdrop" (click)="onClose()" aria-hidden="true"></div>
+  <div class="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title" class="modal-title">
+          {{ currentStep === 'form' ? 'Join as ' + (roleId === 1 ? 'Student' : 'Trainer') : 'Verify OTP' }}
+        </h2>
+        <button
+          class="modal-close"
+          (click)="onClose()"
+          aria-label="Close registration modal"
+          type="button"
+          [disabled]="isLoading"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18M6 6L18 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Registration Form Step -->
+      <form 
+        *ngIf="currentStep === 'form'" 
+        [formGroup]="registerForm" 
+        (ngSubmit)="onSendOtp()" 
+        class="modal-form" 
+        novalidate
+      >
+        <!-- Name Fields Row -->
+        <div class="form-row">
+          <div class="form-group form-group-half">
+            <label for="firstName" class="form-label">
+              First Name <span class="required-asterisk" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              placeholder="Enter first name"
+              class="form-input"
+              [class.form-input-error]="hasFieldError('firstName')"
+              autocomplete="given-name"
+              required
+              [disabled]="isLoading"
+            />
+            @if (hasFieldError('firstName')) {
+            <small class="form-error" role="alert" aria-live="polite">
+              {{ getFieldErrorMessage('firstName') }}
+            </small>
+            }
+          </div>
+
+          <div class="form-group form-group-half">
+            <label for="lastName" class="form-label">
+              Last Name <span class="required-asterisk" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              placeholder="Enter last name"
+              class="form-input"
+              [class.form-input-error]="hasFieldError('lastName')"
+              autocomplete="family-name"
+              required
+              [disabled]="isLoading"
+            />
+            @if (hasFieldError('lastName')) {
+            <small class="form-error" role="alert" aria-live="polite">
+              {{ getFieldErrorMessage('lastName') }}
+            </small>
+            }
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email" class="form-label">
+            Email Address <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email address"
+            class="form-input"
+            [class.form-input-error]="hasFieldError('email')"
+            autocomplete="email"
+            required
+            [disabled]="isLoading"
+          />
+          @if (hasFieldError('email')) {
+          <small class="form-error" role="alert" aria-live="polite">
+            {{ getFieldErrorMessage('email') }}
+          </small>
+          }
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">
+            Password <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Create a secure password"
+            class="form-input"
+            [class.form-input-error]="hasFieldError('password')"
+            autocomplete="new-password"
+            required
+            [disabled]="isLoading"
+          />
+          @if (hasFieldError('password')) {
+          <small class="form-error" role="alert" aria-live="polite">
+            {{ getFieldErrorMessage('password') }}
+          </small>
+          }
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">
+            Confirm Password <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Re-enter your password"
+            class="form-input"
+            [class.form-input-error]="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched"
+            autocomplete="new-password"
+            required
+            [disabled]="isLoading"
+          />
+          @if (registerForm.errors?.['passwordMismatch'] &&
+          registerForm.get('confirmPassword')?.touched) {
+          <small class="form-error" role="alert" aria-live="polite"> Passwords do not match </small>
+          }
+        </div>
+
+        <!-- Error Message -->
+        @if (registerError) {
+        <div class="form-error-message" role="alert" aria-live="polite">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+            <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2" />
+            <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2" />
+          </svg>
+          {{ registerError }}
+        </div>
+        }
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+            [class.btn-loading]="isLoading"
+            [disabled]="registerForm.invalid || isLoading"
+          >
+            @if (isLoading) {
+            <span class="btn-spinner" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 12a9 9 0 11-6.219-8.56"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            Sending OTP... } @else { Send OTP }
+          </button>
+        </div>
+      </form>
+
+      <!-- OTP Verification Step -->
+      <form 
+        *ngIf="currentStep === 'otp'" 
+        [formGroup]="otpForm" 
+        (ngSubmit)="onVerifyOtp()" 
+        class="modal-form" 
+        novalidate
+      >
+        <div class="form-group">
+          <label class="form-label">
+            OTP Sent to {{ registerForm.get('email')?.value }}
+          </label>
+          <p class="form-footer-text">
+            We've sent a 6-digit verification code to your email address. Please check your inbox and enter the code below.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="otp" class="form-label">
+            Verification Code <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="otp"
+            type="text"
+            formControlName="otp"
+            placeholder="Enter 6-digit code"
+            class="form-input"
+            [class.form-input-error]="hasOtpFieldError('otp')"
+            maxlength="6"
+            required
+            [disabled]="isLoading"
+          />
+          @if (hasOtpFieldError('otp')) {
+          <small class="form-error" role="alert" aria-live="polite">
+            Please enter a valid 6-digit OTP
+          </small>
+          }
+        </div>
+
+        <!-- Resend OTP Section -->
+        <div class="form-group">
+          <div class="form-footer-text">
+            Didn't receive the code? 
+            <button 
+              type="button" 
+              class="form-link" 
+              (click)="onResendOtp()"
+              [disabled]="isResending || resendCooldown > 0"
+              style="background: none; border: none; padding: 0; margin-left: 0.25rem;"
+            >
+              {{ resendCooldown > 0 ? 'Resend in ' + resendCooldown + 's' : 'Resend OTP' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        @if (registerError) {
+        <div class="form-error-message" role="alert" aria-live="polite">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+            <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2" />
+            <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2" />
+          </svg>
+          {{ registerError }}
+        </div>
+        }
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+            [class.btn-loading]="isLoading"
+            [disabled]="otpForm.invalid || isLoading"
+          >
+            @if (isLoading) {
+            <span class="btn-spinner" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 12a9 9 0 11-6.219-8.56"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            Verifying... } @else { Verify & Create Account }
+          </button>
+          
+          <button
+            type="button"
+            class="btn btn-full"
+            (click)="currentStep = 'form'"
+            [disabled]="isLoading"
+            style="margin-top: 0.5rem; background: transparent; color: #4a5568; border: 1px solid #e2e8f0;"
+          >
+            Back to Registration
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-toast></app-toast>

@@ -1,0 +1,142 @@
+<div class="modal" [class.show]="isOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <i class="fas fa-plus"></i>
+        Profile
+      </h2>
+      <button class="close-btn" (click)="onClose()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form>
+        <div class="form-grid">
+          <!-- First Name -->
+          <div class="form-group">
+            <label class="form-label"> First Name <span class="required-asterisk">*</span> </label>
+            <div class="input-wrapper">
+              <input
+                #firstNameInput
+                type="text"
+                class="form-input"
+                [(ngModel)]="user.firstName"
+                name="firstName"
+                placeholder="Enter first name"
+                [disabled]="!editMode"
+              />
+              <button type="button" class="icon-btn" (click)="editAndFocus(firstNameInput)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-group">
+            <label class="form-label"> Last Name <span class="required-asterisk">*</span> </label>
+            <div class="input-wrapper">
+              <input
+                #lastNameInput
+                type="text"
+                class="form-input"
+                [(ngModel)]="user.lastName"
+                name="lastName"
+                placeholder="Enter last name"
+                [disabled]="!editMode"
+              />
+              <button type="button" class="icon-btn" (click)="editAndFocus(lastNameInput)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div id="email" class="form-group full-width">
+            <label class="form-label"> Email <span class="required-asterisk">*</span> </label>
+            <div class="input-wrapper">
+              <input
+                #emailInput
+                type="text"
+                class="form-input"
+                [(ngModel)]="user.email"
+                name="email"
+                placeholder="Enter email"
+                [disabled]="!editMode"
+              />
+              <button type="button" class="icon-btn" (click)="editAndFocus(emailInput)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change Password Button -->
+        @if(!isChangePassword){
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" (click)="changePassword()">
+            Change Password
+          </button>
+        </div>
+        }
+
+        <!-- Change Password Form -->
+        @else {
+        <hr />
+        <div class="modal-body">
+          <form>
+            <div class="form-grid">
+              <!-- Old Password -->
+              <div class="form-group full-width">
+                <label class="form-label">
+                  Old Password <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    class="form-input"
+                    [(ngModel)]="OldPassword"
+                    name="OldPassword"
+                    placeholder="Enter Old Password"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- New Password -->
+              <div class="form-group full-width">
+                <label class="form-label">
+                  New Password <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    class="form-input"
+                    [(ngModel)]="NewPassword"
+                    name="NewPassword"
+                    placeholder="Enter New Password"
+                    required
+                    (input)="validatePassword()"
+                  />
+                </div>
+
+                <!-- Error message -->
+                <div *ngIf="passwordError" class="error-message">
+                  {{ passwordError }}
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        }
+
+        <!-- Save Button -->
+        @if(editMode || isChangePassword){
+        <button type="button" class="btn-primary" (click)="updateData()" [disabled]="passwordError">
+          Save Changes
+        </button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

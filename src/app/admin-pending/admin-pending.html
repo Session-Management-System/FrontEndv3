@@ -1,0 +1,34 @@
+<div class="dashboard-grid">
+  <!-- Recent Sessions -->
+  <div class="content-card">
+    <div class="card-header">
+      <h3 class="card-title">Pending Session Approvals</h3>
+    </div>
+    <div class="card-content">
+      <div class="session-list">
+        @for (session of pendingSessions; track $index) {
+        <div class="session-item" (click)="openAllSessions(session.sessionId)">
+          <div class="session-time">
+            <div class="session-date">{{ session.sessionDate }}</div>
+            <div class="session-hour">{{ session.sessionHour }}</div>
+          </div>
+          <div class="session-info">
+            <div class="session-title">{{ session.title }}</div>
+            <div class="session-trainer">Trainer: {{ session.trainer }}</div>
+          </div>
+          <div class="session-status status-active">Pending</div>
+        </div>
+        }
+        <div *ngIf="pendingSessions.length === 0" class="no-sessions">
+          No pending sessions for approval.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-admin-sessions
+  *ngIf="isAdminSessionsOpen"
+  [isOpen]="isAdminSessionsOpen"
+  (closeModal)="closeAdminSessions()"
+></app-admin-sessions>

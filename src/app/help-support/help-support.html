@@ -1,0 +1,476 @@
+<div class="modal-overlay" [class.active]="isHelpActive" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button class="close-btn" (click)="closeModal()" aria-label="Close help modal">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <a href="#" class="logo">LearnHub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <h1>Help & Support</h1>
+        <p>Find answers to your questions and get the support you need to make the most of LearnHub</p>
+      </div>
+    </section>
+
+    <!-- User Type Selector -->
+    <div class="user-type-selector">
+      <button class="user-type-btn" [class.active]="activeTab === 'student'" (click)="setActiveTab('student')">Student Help</button>
+      <button class="user-type-btn" [class.active]="activeTab === 'trainer'" (click)="setActiveTab('trainer')">Trainer Help</button>
+      <button class="user-type-btn" [class.active]="activeTab === 'general'" (click)="setActiveTab('general')">General</button>
+    </div>
+
+    <!-- Student FAQ Section -->
+    <section class="faq-section" [class.active]="activeTab === 'student'">
+      <div class="faq-container">
+        <h2 class="section-title">Student Help Center</h2>
+        
+        <div class="faq-grid">
+          <!-- Getting Started -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <h3 class="category-title">Getting Started</h3>
+            <p class="category-desc">Learn the basics of using LearnHub as a student</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-1']">
+              <div class="faq-question">
+                How do I create a student account?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Click the "Sign Up" button, fill out your personal information, verify your email, and you'll have instant access to browse and book sessions.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-2']">
+              <div class="faq-question">
+                How do I browse available sessions?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Go to the "Sessions" page where you can filter by category, date, time, and trainer. Use the search bar to find specific topics.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-3']">
+              <div class="faq-question">
+                What information do I see about each session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Each session shows the topic, trainer name, date/time, duration, available seats, category, and a brief description of what will be covered.
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Sessions -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="category-title">Booking Sessions</h3>
+            <p class="category-desc">Everything about booking and managing your sessions</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-4']">
+              <div class="faq-question">
+                How do I book a session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Click on any session, review the details, and click "Book Session" if seats are available. You'll receive a confirmation email with the meeting link.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-5']">
+              <div class="faq-question">
+                Can I book overlapping sessions?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                No, you cannot book sessions that overlap in time. You must cancel your existing booking first if you want to book a conflicting session.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-6']">
+              <div class="faq-question">
+                What if a session is full?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                You can join the waitlist. If someone cancels, you'll be automatically notified and given the opportunity to book the seat.
+              </div>
+            </div>
+          </div>
+
+          <!-- Managing Bookings -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h3 class="category-title">Managing Bookings</h3>
+            <p class="category-desc">Cancel, reschedule, and track your bookings</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-7']">
+              <div class="faq-question">
+                How do I cancel a booking?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Go to your dashboard, find the session under "Upcoming Sessions," and click "Cancel." You must cancel at least 2 hours before the session starts.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-8']">
+              <div class="faq-question">
+                What happens if I miss a session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Missed sessions are marked as "No-Show" in your history. Multiple no-shows may result in booking restrictions. Contact support if you had an emergency.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-9']">
+              <div class="faq-question">
+                Can I see my booking history?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Yes, your dashboard shows all past sessions with status (attended, cancelled, no-show) and any feedback you've provided.
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Issues -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="category-title">Technical Issues</h3>
+            <p class="category-desc">Troubleshooting common technical problems</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-10']">
+              <div class="faq-question">
+                I can't access the meeting link
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Meeting links are sent via email after booking and are also available in your dashboard 30 minutes before the session. Check your spam folder or contact support.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['student-11']">
+              <div class="faq-question">
+                What if I have audio/video issues during a session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Try refreshing your browser, checking your microphone/camera permissions, or switching to a different browser. Use the session chat for help from the trainer.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trainer FAQ Section -->
+    <section class="faq-section" [class.active]="activeTab === 'trainer'">
+      <div class="faq-container">
+        <h2 class="section-title">Trainer Help Center</h2>
+        
+        <div class="faq-grid">
+          <!-- Becoming a Trainer -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3 class="category-title">Becoming a Trainer</h3>
+            <p class="category-desc">Apply and get approved as a LearnHub trainer</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-1']">
+              <div class="faq-question">
+                How do I apply to become a trainer?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Click "Become a Trainer," fill out the application form with your qualifications and experience. After submitting your details, there will be an interview and certificate verification process conducted outside of our website system before final approval by admin.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-2']">
+              <div class="faq-question">
+                What qualifications do I need?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Requirements vary by category. Generally, you need relevant experience, certifications, or degrees in your field. Provide detailed information about your background during the application process.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-3']">
+              <div class="faq-question">
+                How long does the approval process take?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                The entire process including application review, interview, and verification typically takes 5-10 business days. You'll receive an email with the decision and next steps if approved.
+              </div>
+            </div>
+          </div>
+
+          <!-- Creating Sessions -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <h3 class="category-title">Creating Sessions</h3>
+            <p class="category-desc">Set up and manage your training sessions</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-4']">
+              <div class="faq-question">
+                How do I create a new session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Go to your trainer dashboard, click "Create Session," fill in the topic, date/time, seat limit, category, and meeting link. Sessions need admin approval before going live.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-5']">
+              <div class="faq-question">
+                Can I edit a session after creating it?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                No, once a session is created and submitted for approval, trainers cannot edit the session details. Please ensure all information is accurate before submission.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-6']">
+              <div class="faq-question">
+                How far in advance should I schedule sessions?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                We recommend scheduling at least 48-72 hours in advance to allow for admin approval and student bookings. Popular times may need more lead time.
+              </div>
+            </div>
+          </div>
+
+          <!-- Managing Sessions -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h3 class="category-title">Managing Sessions</h3>
+            <p class="category-desc">Handle your scheduled sessions effectively</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-7']">
+              <div class="faq-question">
+                How do I see who's registered for my sessions?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Your dashboard shows all upcoming sessions with the number of registered students. For privacy reasons, student contact information is not provided to trainers.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-8']">
+              <div class="faq-question">
+                What if I need to cancel a session?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Once a session is approved by admin, trainers cannot cancel it. In case of emergencies, please contact admin support immediately for assistance.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-9']">
+              <div class="faq-question">
+                How do I handle no-shows?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Wait 10-15 minutes past start time, then begin with present students. The system automatically marks absent students as no-shows.
+              </div>
+            </div>
+          </div>
+
+          <!-- Best Practices -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3 class="category-title">Best Practices</h3>
+            <p class="category-desc">Tips for successful training sessions</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-10']">
+              <div class="faq-question">
+                How do I ensure good student engagement?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Prepare interactive content, encourage questions, use polls or breakout rooms, and provide clear learning objectives at the start of each session.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['trainer-11']">
+              <div class="faq-question">
+                What should I do if technical issues occur?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Have a backup plan, test your setup beforehand, and consider recording sessions when possible for makeup access if technical issues prevent the live session.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- General FAQ Section -->
+    <section class="faq-section" [class.active]="activeTab === 'general'">
+      <div class="faq-container">
+        <h2 class="section-title">General Help</h2>
+        
+        <div class="faq-grid">
+          <!-- Account Management -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-user-cog"></i>
+            </div>
+            <h3 class="category-title">Account Management</h3>
+            <p class="category-desc">Managing your LearnHub account settings</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-1']">
+              <div class="faq-question">
+                How do I reset my password?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Click "Forgot Password" on the login page, enter your email, and follow the reset instructions sent to your inbox.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-2']">
+              <div class="faq-question">
+                How do I update my profile information?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Go to your dashboard, click "Profile Settings," update your information, and save changes. Some changes may require email verification.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-3']">
+              <div class="faq-question">
+                Can I delete my account?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Yes, go to Account Settings and click "Delete Account." This action is permanent and will cancel all upcoming bookings.
+              </div>
+            </div>
+          </div>
+
+          <!-- Platform Features -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <h3 class="category-title">Platform Features</h3>
+            <p class="category-desc">Understanding LearnHub's key features</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-4']">
+              <div class="faq-question">
+                What categories of learning are available?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                We offer programming (C#, Java, HTML/CSS), professional skills, sports (Chess), languages, and more. Categories are managed by admins and regularly updated.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-5']">
+              <div class="faq-question">
+                How does the rating system work?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                After attending a session, you can rate the trainer and session quality. Ratings help other students choose and help us maintain quality standards.
+              </div>
+            </div>
+          </div>
+
+          <!-- Online Support -->
+          <div class="faq-category">
+            <div class="category-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3 class="category-title">Online Support</h3>
+            <p class="category-desc">Available support options through our platform</p>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-6']">
+              <div class="faq-question">
+                What online support options are available?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                We provide comprehensive online support including email assistance, detailed FAQ sections, and platform guidance to help you make the most of LearnHub.
+              </div>
+            </div>
+            
+            <div class="faq-item" (click)="toggleFaq($event)" [class.active]="faqStates['general-7']">
+              <div class="faq-question">
+                How can trainers get additional support?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Trainers can access specialized support through our email system for any platform-related questions or technical issues they encounter.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="faq-container">
+        <h2 class="section-title">Still Need Help?</h2>
+        <p class="contact-description">
+          Can't find what you're looking for? Our support team is here to help you with any questions or issues.
+        </p>
+        
+        <div class="contact-grid">
+          <!-- Email Support -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3 class="contact-title">Email Support</h3>
+            <p class="contact-desc">Get detailed help via email. We typically respond within 24 hours.</p>
+            <a href="mailto:support@learnhub.com" class="btn-primary">Send Email</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Business Hours</h3>
+          <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
+          <p>Saturday: 10:00 AM - 4:00 PM IST</p>
+          <p class="note">Response times may be longer during weekends and holidays</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

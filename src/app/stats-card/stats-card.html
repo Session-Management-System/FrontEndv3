@@ -1,0 +1,12 @@
+<div class="stat-card">
+  <div class="stat-header">
+    <div class="stat-icon">
+      <i class="fas" [ngClass]="{
+        'fa-calendar-check': type === 'upcoming',
+        'fa-check-circle': type === 'completed' || type === 'registered'
+      }"></i>
+    </div>
+  </div>
+  <div class="stat-value">{{ value }}</div>
+  <div class="stat-label">{{ label }}</div>
+</div>

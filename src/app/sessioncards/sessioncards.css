@@ -1,0 +1,302 @@
+/* Modal Overlay */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal.show {
+  display: flex;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #ffffff;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* header fixed, scroll only inside */
+}
+
+/* Modal Header (Fixed) */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #4a5568;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #f7fafc;
+  color: #1a202c;
+}
+
+/* Modal Body */
+.modal-body {
+  flex: 1; /* take remaining height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* prevent header from scrolling */
+  padding: 2rem 2rem 0;
+}
+
+/* Session Cards */
+.session-card {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.session-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e0;
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.session-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.25rem;
+}
+
+.session-category {
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.session-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background: #fef5e7;
+  color: #d69e2e;
+}
+
+.status-approved {
+  background: #f0fff4;
+  color: #38a169;
+}
+
+.status-rejected {
+  background: #fed7d7;
+  color: #e53e3e;
+}
+
+.session-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.session-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .modal {
+    padding: 1rem;
+  }
+
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .session-details {
+    grid-template-columns: 1fr;
+  }
+
+  .session-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .session-status {
+    align-self: flex-start;
+  }
+}
+
+/* Session Cards */
+.session-card {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem; /* vertical spacing between cards */
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.modal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem 1rem 0;
+}
+
+.session-detail {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.session-detail i {
+  color: #718096;
+}
+button {
+  background: #1a202c;
+  color: white;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+button:hover {
+  background: #2d3748;
+  transform: translateY(-1px);
+}
+
+.yes-btn {
+  background: #38a169; /* green */
+}
+
+.yes-btn:hover {
+  background: #2f855a;
+}
+
+.no-btn {
+  background: #e53e3e; /* red */
+}
+
+.no-btn:hover {
+  background: #c53030;
+}
+
+/* Confirmation Modal Buttons */
+.yes-btn,
+.no-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.yes-btn {
+  background: #1a202c; /* match Register button */
+  color: #fff;
+}
+
+.yes-btn:hover {
+  background: #2d3748;
+  transform: translateY(-1px);
+}
+
+.no-btn {
+  background: #edf2f7; /* light gray */
+  color: #1a202c;
+  border: 1px solid #e2e8f0;
+}
+
+.no-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Smaller confirmation modal */
+.confirm-modal {
+  max-width: 400px; /* smaller width */
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Fix header alignment inside small modal */
+.confirm-modal .modal-header {
+  padding: 1rem 1.25rem;
+}
+
+.confirm-modal .modal-title {
+  font-size: 1.2rem;
+}
+
+/* Adjust close button for smaller modal */
+.confirm-modal .close-btn {
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-left: ; /* push it to far right */
+  color: #4a5568;
+}
+.confirm-modal .close-btn:hover {
+  background: #f7fafc;
+  color: #1a202c;
+}

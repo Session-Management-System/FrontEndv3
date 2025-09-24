@@ -1,0 +1,210 @@
+/* Modal Overlay */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal.show {
+  display: flex;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #ffffff;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* header fixed, scroll only inside */
+}
+
+/* Modal Header (Fixed) */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #4a5568;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #f7fafc;
+  color: #1a202c;
+}
+
+/* Modal Body */
+.modal-body {
+  flex: 1; /* take remaining height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* prevent header from scrolling */
+  padding: 2rem 2rem 0;
+}
+
+/* Calendar Session Groups (Scrollable) */
+.calendar-session-group {
+  flex: 1;
+  overflow-y: auto; /* scrollable section */
+  margin-bottom: 1rem;
+}
+
+/* Session Cards */
+.calendar-session-group .session-card {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.calendar-session-group .session-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e0;
+}
+
+.calendar-session-group .session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.calendar-session-group .session-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.25rem;
+}
+
+.calendar-session-group .session-category {
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.calendar-session-group .session-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.calendar-session-group .status-pending {
+  background: #fef5e7;
+  color: #d69e2e;
+}
+
+.calendar-session-group .status-approved {
+  background: #f0fff4;
+  color: #38a169;
+}
+
+.calendar-session-group .status-rejected {
+  background: #fed7d7;
+  color: #e53e3e;
+}
+
+.calendar-session-group .session-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.calendar-session-group .session-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .modal {
+    padding: 1rem;
+  }
+
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .calendar-session-group .session-details {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-session-group .session-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .calendar-session-group .session-status {
+    align-self: flex-start;
+  }
+}
+
+.calendar-session-group {
+  flex: 1;
+  overflow-y: auto; /* scrollable section */
+  margin-bottom: 1rem;
+  padding: 1rem; /* add gap between scroll edges and cards */
+  box-sizing: border-box; /* ensure padding doesn’t break layout */
+}
+
+/* Session Cards */
+.calendar-session-group .session-card {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem; /* vertical spacing between cards */
+  transition: all 0.2s ease;
+}
+.calendar-session-group {
+  padding: 0.5rem 1rem 1rem 1rem; /* top 0.5rem, sides 1rem, bottom 1rem */
+}
+
+.modal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem 1rem 0;
+}

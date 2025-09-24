@@ -1,0 +1,283 @@
+<!-- Header -->
+<header class="header">
+  <div class="nav-container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      LearnHub
+    </div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How it Works</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="auth-buttons">
+      <button class="btn btn-outline" (click)="openLoginModal()">Sign In</button>
+      <button class="btn btn-primary" (click)="openStudentRegistration()">Join Now</button>
+    </div>
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Professional Learning Sessions Made Simple</h1>
+      <p>
+        Connect with expert trainers and enhance your skills through live, interactive sessions. Our
+        platform makes learning accessible, organized, and effective for everyone.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary btn-large" (click)="openStudentRegistration()">
+          Start Learning
+        </button>
+        <button class="btn btn-outline btn-large" (click)="openTrainerRegistration()">
+          Become a Trainer
+        </button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <i class="fas fa-laptop-code"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>Comprehensive learning solutions designed for students, trainers, and administrators</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>For Students</h3>
+        </div>
+        <p>
+          Access live learning sessions across multiple categories and enhance your professional
+          skills
+        </p>
+        <ul class="service-features">
+          <li>Browse and book live sessions</li>
+          <li>Multiple learning categories available</li>
+          <li>Smart booking calendar system</li>
+          <li>Automatic conflict prevention</li>
+          <li>Flexible cancellation policy</li>
+          <li>Direct meeting links</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>For Trainers</h3>
+        </div>
+        <p>Share your expertise and create engaging live sessions for motivated learners</p>
+        <ul class="service-features">
+          <li>Create and manage live sessions</li>
+          <li>Flexible scheduling options</li>
+          <li>Control session capacity</li>
+          <li>Upload qualification certificates</li>
+          <li>Professional trainer verification</li>
+          <li>Session management tools</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <h3>Administration</h3>
+        </div>
+        <p>Robust administrative tools ensuring quality control and smooth platform operations</p>
+        <ul class="service-features">
+          <li>Trainer application review process</li>
+          <li>Learning category management</li>
+          <li>Quality assurance monitoring</li>
+          <li>Performance tracking</li>
+          <li>User account management</li>
+          <li>Platform analytics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it Works -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-title">
+      <h2>How It Works</h2>
+      <p>Get started in three simple steps</p>
+    </div>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Create Account</h3>
+        <p>Sign up as a student or apply to become a verified trainer with your credentials</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Browse Sessions</h3>
+        <p>Explore available learning sessions and book your preferred time slots</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Join & Learn</h3>
+        <p>Attend live sessions through provided meeting links and enhance your skills</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Platform Features</h2>
+      <p>Everything you need for a seamless learning experience</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Smart Scheduling</h3>
+        </div>
+        <p>
+          Intelligent calendar system preventing booking conflicts and optimizing your learning
+          schedule
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3>Live Sessions</h3>
+        </div>
+        <p>
+          Real-time interactive sessions with integrated meeting links for seamless connectivity
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Quality Assurance</h3>
+        </div>
+        <p>
+          Verified trainers with proper qualifications and certificates ensuring authentic learning
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Capacity Management</h3>
+        </div>
+        <p>Controlled session sizes ensuring personalized attention and quality interaction</p>
+      </div>
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Flexible Cancellation</h3>
+        </div>
+        <p>Easy cancellation policy with 2-hour advance notice providing maximum flexibility</p>
+      </div>
+      <div class="feature">
+        <div class="feature-header">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Progress Tracking</h3>
+        </div>
+        <p>Monitor your learning journey and track completed sessions and achievements</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Start Your Learning Journey?</h2>
+    <p>Join our professional learning community today</p>
+    <button class="btn btn-primary btn-large" (click)="openStudentRegistration()">
+      Get Started
+    </button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>LearnHub</h3>
+        <p>Professional session management platform connecting learners with expert trainers.</p>
+        <p>Empowering growth through structured learning.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Learning Categories</h3>
+        <ul>
+          <li><a href="#">Programming Languages</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Professional Skills</a></li>
+          <li><a href="#">Strategy Games</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Support</h3>
+        <p><i class="fas fa-envelope"></i> support@learnhub.com</p>
+        <p><i class="fas fa-phone"></i> +91 123 456 7890</p>
+        <p><i class="fas fa-map-marker-alt"></i> Ranipet, Tamil Nadu, India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 LearnHub. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal -->
+<app-login
+  *ngIf="isLoginModalOpen"
+  (close)="isLoginModalOpen = false"
+  (openRegister)="openStudentRegistration()"
+>
+</app-login>
+
+<!-- Use the new registration component -->
+<app-registration
+  [isOpen]="isRegistrationModalOpen"
+  [roleId]="registrationRoleId"
+  (closed)="closeRegistrationModal()"
+  (registrationSuccess)="onRegistrationSuccess()"
+>
+</app-registration>

@@ -1,0 +1,64 @@
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="onClose()">&times;</span>
+    <h2>Login</h2>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+      <!-- Email Input -->
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input
+          type="email"
+          id="loginEmail"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          email
+          #emailInput="ngModel"
+        />
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+          Please enter a valid email address.
+        </div>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input
+          type={{viewpassword}}
+          id="loginPassword"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          #passwordInput="ngModel"
+          style="width: 85%;"
+        />
+        <button style="background: none; border: none;" class="fa-solid fa-eye" (click)="viewPassword()"></button>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="width: 100%"
+        [disabled]="loginForm.invalid"
+      >
+        Sign In
+      </button>
+
+      <!-- Server Error Message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+
+    <!-- Switch to Register -->
+    <p class="modal-note">
+      Don't have an account?<br />
+      <button type="button" class="link-button" (click)="switchToRegister()">Register here</button>
+      <button type="button" class="forgot-password" (click)="switchToForgotPassword()">Forgot Password</button>
+    </p>
+  </div>
+</div>

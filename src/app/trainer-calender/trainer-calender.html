@@ -1,0 +1,84 @@
+<div class="modal" [class.show]="isOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <i class="fas fa-calendar"></i>
+        Session Calendar
+      </h2>
+      <button class="close-btn" (click)="onClose()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Upcoming Sessions -->
+      <div class="calendar-session-group">
+        <h3 class="calendar-group-title">Upcoming Sessions</h3>
+        @for (session of upcomingSessions; track $index) {
+        <div class="session-card">
+          <div class="session-header">
+            <div>
+              <h3 class="session-title">{{session.title}}</h3>
+              <p class="session-category">{{session.description}}</p>
+            </div>
+            @if(session.isApproved==true){
+              <span class="session-status status-approved">Approved {{session.isApproved}}</span>
+            }
+            @else{
+              <span class="session-status status-pending">Pending</span>
+            }
+            
+          </div>
+          <div class="session-details">
+            <div class="session-detail">
+              <i class="fas fa-calendar"></i>
+              
+              {{dateFormat(session.startTime)}}
+            </div>
+            <div class="session-detail">
+              <i class="fas fa-users"></i>
+              @if(session.isApproved==true){
+                  {{session.capacity-session.remainingCapacity}} students registered
+              }
+              @else {
+                Max {{session.capacity}} students
+              }
+             
+            </div>
+          </div>
+        </div>
+      }
+
+      
+      </div>
+
+      <!-- Previous Sessions -->
+      <div class="calendar-session-group">
+        <h3 class="calendar-group-title">Previous Sessions</h3>
+        @for(session of previousSessions;track $index){
+              
+        
+        <div class="session-card">
+          <div class="session-header">
+            <div>
+              <h3 class="session-title">{{session.title}}</h3>
+              <p class="session-category">{{session.description}}</p>
+            </div>
+            <span class="session-status status-approved">Completed</span>
+          </div>
+          <div class="session-details">
+            <div class="session-detail">
+              <i class="fas fa-calendar"></i>
+              {{dateFormat(session.endTime)}}
+            </div>
+            <div class="session-detail">
+              <i class="fas fa-users"></i>
+              {{session.capacity-session.remainingCapacity}} students attended
+            </div>
+          </div>
+        </div>
+      }
+      
+      </div>
+    </div>
+  </div>
+</div>

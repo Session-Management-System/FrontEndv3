@@ -1,0 +1,142 @@
+<!-- Top Navigation Bar -->
+<nav class="top-navbar">
+  <div class="top-nav-container">
+    <button class="mobile-menu-btn" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      LearnHub
+      <span class="admin-badge">ADMIN</span>
+    </div>
+
+    <div class="nav-right">
+      <div class="user-profile">
+        <div class="user-avatar">AD</div>
+        <div class="user-info">
+          <div class="user-name">{{ AdminName }}</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar Navigation -->
+<aside class="sidebar" id="sidebar" [class.open]="sidebarOpen">
+  <!-- Sidebar content unchanged -->
+  <div class="sidebar-section">
+    <div class="sidebar-title">Dashboard</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Overview</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Management</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a style="cursor: pointer" (click)="openAllSessions()"
+          ><i class="fas fa-calendar-alt"></i> Sessions</a
+        >
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="openAllUsers()"><i class="fas fa-users"></i> Users</a>
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="openAllTrainers()"
+          ><i class="fas fa-chalkboard-teacher"></i> Trainers</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Account</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#"><i class="fas fa-user-cog"></i> Settings</a>
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="main-content" (click)="closeSidebarOnOutsideClick($event)">
+  <!-- Keep the same dashboard header, stats, grid, quick actions -->
+  <!-- (No script tags, Angular handles logic in TS) -->
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+  </div>
+
+  <!-- Stats Overview -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ totalUsers }}</div>
+      <div class="stat-label">Total Users</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ activeSessions }}</div>
+      <div class="stat-label">Active Sessions</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ totalTrainers }}</div>
+      <div class="stat-label">Active Trainers</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ totalSessionsCount }}</div>
+      <div class="stat-label">Total Sessions</div>
+    </div>
+  </div>
+
+  <!-- Dashboard Grid -->
+  <app-admin-pending></app-admin-pending>
+
+  <app-admin-sessions
+    *ngIf="isSessionsOpen"
+    [isOpen]="isSessionsOpen"
+    (closeModal)="closeSessions()"
+  ></app-admin-sessions>
+
+  <app-users
+    *ngIf="isAllUsersOpen"
+    [isOpen]="isAllUsersOpen"
+    (closeModal)="closeAllUsers()"
+  ></app-users>
+
+  <app-trainers
+    *ngIf="isAllTrainersOpen"
+    [isOpen]="isAllTrainersOpen"
+    (closeModal)="closeAllTrainers()"
+  ></app-trainers>
+</main>

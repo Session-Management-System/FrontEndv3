@@ -1,0 +1,21 @@
+<div class="card-content">
+  <div class="session-list">
+    @for (session of sessions.slice(0,3);track $index) {
+    <div class="session-item" (click)="handleClick()">
+      <div class="session-time">
+        <div class="session-date">{{ session.sessionDate }}</div>
+        <div class="session-hour">{{ session.sessionHour }}</div>
+      </div>
+      <div class="session-info">
+        <div class="session-title">{{ session?.title }}</div>
+        <div class="session-trainer">with {{ session?.trainerName }}</div>
+      </div>
+
+      <div class="session-status status-confirmed">Confirmed</div>
+    </div>
+    }
+    <div *ngIf="sessions.length === 0" class="no-sessions">No upcoming sessions.</div>
+  </div>
+</div>
+
+<app-mysessions *ngIf="isOpen" [isOpen]="isOpen" (closeModal)="isOpen = false"></app-mysessions>

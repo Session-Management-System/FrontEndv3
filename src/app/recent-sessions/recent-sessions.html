@@ -1,0 +1,18 @@
+<div class="card-content">
+  <div class="session-list">
+    @for (session of sessions.slice(0,3); track $index) {
+    <div class="session-item">
+      <div class="session-time">
+        <div class="session-date">{{ session.dayText }}</div>
+      </div>
+      <div class="session-info">
+        <div class="session-title">{{ session.title }}</div>
+        <div class="session-trainer">{{ session.trainerName }}</div>
+      </div>
+      <div class="session-status status-confirmed">Completed</div>
+    </div>
+    } @if (sessions.length===0) {
+    <div class="no-sessions">No recent sessions available.</div>
+    }
+  </div>
+</div>

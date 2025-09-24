@@ -1,0 +1,33 @@
+<!-- User Menu Dropdown -->
+<div class="user-profile" (click)="toggleProfileDropdown()">
+  <div class="user-avatar">SJ</div>
+  <div class="user-info">
+    <div class="user-name">{{username}}</div>
+    <div class="user-role">Trainer</div>
+  </div>
+  <i class="fas fa-chevron-down chevron-down" [class.rotated]="isProfileDropdownOpen"></i>
+ 
+  <div class="profile-dropdown" [class.show]="isProfileDropdownOpen">
+    <a href="#" class="dropdown-item" (click)="handleAction('profile', $event)">
+      <i class="fas fa-user"></i>
+      View Profile
+    </a>
+    <a href="#" class="dropdown-item" (click)="handleAction('settings', $event)">
+      <i class="fas fa-cog"></i>
+      Account Settings
+    </a>
+    <a href="#" class="dropdown-item" (click)="handleAction('help', $event)">
+      <i class="fas fa-question-circle"></i>
+      Help & Support
+    </a>
+    <a href="#" class="dropdown-item" (click)="handleAction('logout', $event)">
+      <i class="fas fa-sign-out-alt"></i>
+      Logout
+    </a>
+  </div>
+</div>
+
+<!-- Help Modal -->
+
+<app-help-support [isHelpActive]="isHelpModalActive"
+  (isHelpActiveChange)="onHelpModalChange($event)"></app-help-support>

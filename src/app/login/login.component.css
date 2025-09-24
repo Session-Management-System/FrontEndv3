@@ -1,0 +1,135 @@
+/* Login Modal Styles - same as Register Modal */
+#loginModal {
+  display: flexbox; /* will be controlled via Angular */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#loginModal .modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+}
+
+#loginModal .close {
+  color: #a0aec0;
+  float: right;
+  margin-right: 2%;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+#loginModal .close:hover {
+  color: #4a5568;
+}
+
+#loginModal h2 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  color: #1a202c;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center; /* optional: makes header centered */
+}
+
+.error-message {
+  color: #e53e3e; /* red */
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+#loginModal .form-group {
+  margin-bottom: 1rem;
+}
+/* Keep all your existing modal and form CSS as is */
+
+/* Add this for the "Register here" button in the modal */
+.link-button {
+  background: none;
+  border: none;
+  color: #1a202c; /* same as your modal text color */
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font: inherit; /* inherits font from modal */
+}
+
+.link-button:hover {
+  color: #4a5568; /* same hover color as close button */
+}
+
+#loginModal .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+#loginModal .form-group input {
+  width: 94%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+#loginModal .form-group input:focus {
+  outline: none;
+  border-color: #4a5568;
+}
+
+#loginModal .btn-primary {
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-size: 0.9rem;
+  border: none;
+  background: #1a202c;
+  color: white;
+}
+
+#loginModal .btn-primary:hover {
+  background: #2d3748;
+}
+
+#loginModal .forgot-password{
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-size: 0.9rem;
+  border: none;
+  background: #1a202c;
+  color: white;
+  margin-left: 12.5rem;
+}
+
+#loginModal .forgot-password:hover {
+  background: #2d3748;
+}

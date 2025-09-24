@@ -1,0 +1,66 @@
+<!-- Top Navigation Bar -->
+<nav class="top-navbar">
+  <div class="top-nav-container">
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      LearnHub
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-icon">
+        <button class="calendar-btn" (click)="openCalendarModal()">
+          <i class="fas fa-calendar"></i>
+        </button>
+      </div>
+      
+
+      <app-user-menu></app-user-menu>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content Area -->
+<main class="main-content">
+  <!-- Create Session Button -->
+  <button class="create-session-btn" (click)="openCreateSessionModal()">
+    <i class="fas fa-plus"></i>
+    Create New Session
+  </button>
+
+  <!-- Stats cards -->
+  <div class="stats-row">
+    <app-stats-card [value]=upcomingSessions [label]="'Upcoming Sessions'" [type]="'upcoming'"></app-stats-card>
+    <app-stats-card [value]=completedSessions [label]="'Completed Sessions'" [type]="'completed'"></app-stats-card>
+    <app-stats-card [value]=registeredSessions [label]="'Registered Sessions'" [type]="'registered'"></app-stats-card>
+  </div>
+  <!-- end of cards -->
+
+  <!-- Sessions Management -->
+  <section class="sessions-section">
+    <div class="tabs-header">
+      <button class="tab-btn" [class.active]="currentActiveTab === 'pending'" (click)="switchTab('pending')">
+        <i class="fas fa-clock"></i>
+        Pending Sessions
+      </button>
+      <button class="tab-btn" [class.active]="currentActiveTab === 'approved'" (click)="switchTab('approved')">
+        <i class="fas fa-check-circle"></i>
+        Approved Sessions
+      </button>
+    </div>
+
+    <!-- Session List Component -->
+    <app-trainer-session-list [activeTab]="currentActiveTab"></app-trainer-session-list>
+  </section>
+</main>
+
+<!-- Create Session Modal Component -->
+<app-trainer-session-create [isOpen]="isCreateSessionModalOpen" 
+  (closeModal)="closeCreateSessionModal()"></app-trainer-session-create>
+
+<!-- Calendar Modal Component -->
+<app-trainer-calender [isOpen]="isCalendarModalOpen" 
+  (closeModal)="closeCalendarModal()"></app-trainer-calender>

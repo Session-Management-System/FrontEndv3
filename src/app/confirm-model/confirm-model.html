@@ -1,0 +1,26 @@
+<div class="modal" [class.show]="show" (click)="closeOnOverlay($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ title }}</h2>
+    </div>
+
+    <div class="modal-body">
+      <p>{{ message }}</p>
+
+      <div *ngIf="showReasonInput" style="margin-bottom: 1rem">
+        <input
+          type="text"
+          [(ngModel)]="reason"
+          (ngModelChange)="reasonChange.emit($event)"
+          placeholder="Reason"
+          style="width: 100%"
+        />
+      </div>
+
+      <div style="display: flex; gap: 1rem; justify-content: center">
+        <button class="yes-btn" (click)="confirm.emit()">{{ confirmText }}</button>
+        <button class="no-btn" (click)="cancel.emit()">{{ cancelText }}</button>
+      </div>
+    </div>
+  </div>
+</div>

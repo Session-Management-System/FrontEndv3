@@ -1,0 +1,153 @@
+<!-- Top Navigation Bar -->
+<nav class="top-navbar">
+  <div class="top-nav-container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      LearnHub
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-icon">
+        <button class="calendar-btn" (click)="openMySessions($event)">
+          <i class="fa-solid fa-calendar-days"></i>
+        </button>
+      </div>
+
+      <div class="user-profile">
+        <i class="fa-solid fa-user fa-lg"></i>
+        <div class="user-info">
+          <div class="user-name">{{ Name }}</div>
+          <div class="user-role">{{ Role }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar Navigation -->
+<aside class="sidebar" [class.open]="isSidebarOpen" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Main</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="openMySessions($event)">
+          <i class="fas fa-calendar-alt"></i> My Sessions
+        </a>
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="navigateToBrowseSessions($event)">
+          <i class="fas fa-search"></i> Browse Sessions
+        </a>
+      </li>
+      <li>
+        <a style="cursor: pointer" (click)="openSessionHistory()"
+          ><i class="fas fa-history"></i> Session History</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Account</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a style="cursor: pointer" (click)="openProfile()"><i class="fas fa-user"></i> Profile</a>
+      </li>
+      <li>
+        <a style="cursor: pointer;" (click)="openHelpDesk($event)"><i class="fas fa-question-circle"></i> Help & Support</a>
+      </li>
+      <li>
+        <a href="#" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="main-content">
+  <!-- Stats Overview -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ UpcomingSessions }}</div>
+      <div class="stat-label">Upcoming Sessions</div>
+      <!-- <div class="stat-change">+3 this week</div> -->
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ CompletedSessions }}</div>
+      <div class="stat-label">Completed Sessions</div>
+      <!-- <div class="stat-change">+5 this month</div> -->
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <div class="stat-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+      </div>
+      <div class="stat-value">{{ CompletedSessions + UpcomingSessions }}</div>
+      <div class="stat-label">Registered Sessions</div>
+      <!-- <div class="stat-change">+5 this month</div> -->
+    </div>
+  </div>
+
+  <!-- Dashboard Grid -->
+  <div class="dashboard-grid">
+    <div class="content-card">
+      <div class="card-header">
+        <h3 class="card-title">Upcoming Sessions</h3>
+      </div>
+      <app-upcoming-sessions></app-upcoming-sessions>
+    </div>
+    <div class="Gap"></div>
+    <div class="content-card">
+      <div class="card-header">
+        <h3 class="card-title">Recent Sessions</h3>
+      </div>
+      <app-recent-sessions></app-recent-sessions>
+    </div>
+  </div>
+</main>
+
+<!-- <router-outlet></router-outlet> -->
+<app-mysessions
+  *ngIf="isMySessionsOpen"
+  [isOpen]="isMySessionsOpen"
+  (closeModal)="closeMySessions()"
+>
+</app-mysessions>
+
+<app-all-sessions
+  *ngIf="isAllSessionsOpen"
+  [isOpen]="isAllSessionsOpen"
+  (closeModal)="closeAllSessions()"
+></app-all-sessions>
+
+<app-session-history
+  *ngIf="isSessionHistoryOpen"
+  [isOpen]="isSessionHistoryOpen"
+  (closeModal)="closeSessionHistory()"
+></app-session-history>
+
+<app-profile
+  *ngIf="isProfileOpen"
+  [isOpen]="isProfileOpen"
+  (closeModal)="closeProfile()"
+></app-profile>
+
+<app-help-support
+[isHelpActive]="isHelpModalActive" (isHelpActiveChange)="onHelpModalChange($event)"
+></app-help-support>
